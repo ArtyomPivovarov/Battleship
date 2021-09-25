@@ -1,0 +1,204 @@
+body {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: $font-family;
+  background-color: $main-bg-color;
+  color: white;
+}
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('~@/assets/images/bg-image.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 80vw;
+}
+
+.container {
+  width: 1090px;
+  margin: 0 auto;
+}
+
+main {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    display: flex;
+    flex: 1 0;
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+}
+
+.active-el {
+  cursor: pointer;
+
+  span,
+  a {
+    border-bottom: 1px dashed;
+  }
+
+  &:hover,
+  &:active {
+    opacity: 0.5;
+
+    span,
+    a {
+      border: none;
+    }
+  }
+}
+
+.gameboard {
+  width: 500px;
+  display: grid;
+  grid-template-columns: auto 32px;
+  grid-template-rows: 32px auto;
+  user-select: none;
+
+  .axis {
+    font-size: 14px;
+    font-family: 'Roboto-Mono', serif;
+    font-weight: 300;
+
+    .char {
+      text-align: center;
+    }
+  }
+
+  .horizon-axis {
+    grid-column: 1 /2;
+    grid-row: 1 /2;
+    display: grid;
+    grid-template-columns: repeat(10, $gameboard-cell-size);
+    grid-column-gap: $gameboard-gap-size;
+    line-height: 32px;
+  }
+
+  .vertical-axis {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, $gameboard-cell-size);
+    grid-row-gap: $gameboard-gap-size;
+    line-height: 50px;
+  }
+
+  .battlefield {
+    position: relative;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    border-radius: 3px;
+    box-shadow: 4px 3px 2px #07090c;
+
+    .vue-grid-layout {
+      position: absolute;
+      width: 470px;
+      height: 470px;
+
+      &:first-child {
+        background: url('~@/assets/images/bg-table.png');
+      }
+
+      .vue-grid-item.vue-grid-placeholder {
+        background: #70e633;
+      }
+    }
+
+    .layout-aim {
+      .item {
+        height: 100%;
+
+        &:hover {
+          background: url('~@/assets/images/aim.png');
+        }
+      }
+    }
+  }
+}
+
+.game-space {
+  .info {
+    width: 470px;
+
+    padding: 22px 0;
+
+    .fleet,
+    .ships-stat {
+      display: flex;
+    }
+
+    .fleet {
+      .name {
+        margin-right: 10px;
+        font-size: 18px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .damage {
+        font-size: 14px;
+
+        span {
+          vertical-align: text-top;
+        }
+      }
+    }
+
+    .ships-stat {
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .item {
+        display: flex;
+
+        img {
+          height: 20px;
+        }
+
+        .ship-count::before {
+          content: '-';
+          padding: 0 4px 0 10px;
+        }
+      }
+    }
+  }
+}
+
+.chat {
+  ::-webkit-scrollbar {
+    width: 3px;
+    margin-right: 5px
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: $grey;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: white;
+  }
+
+  // Firefox
+  .messages, textarea {
+    scrollbar-width: thin;
+    scrollbar-color: white $grey;
+  }
+
+}
+
+
+
